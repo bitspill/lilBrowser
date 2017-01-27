@@ -21,7 +21,47 @@ export default new VueRouter({
    */
 
   routes: [
-    { path: '/', component: load('Index') }, // Default
-    { path: '*', component: load('Error404') } // Not found
+    {
+      path: '/',
+      component: load('Index'),
+      children: [
+        { // Default
+          path: '',
+          component: load('Media')
+        },
+        {
+          path: 'media',
+          component: load('Media')
+        },
+        {
+          path: 'media/:types',
+          component: load('Media')
+        },
+        {
+          path: 'search/:query',
+          component: load('Search')
+        },
+        {
+          path: 'search/:types/:query',
+          component: load('Search')
+        },
+        {
+          path: 'publisher',
+          component: load('Publisher')
+        },
+        {
+          path: 'publisher/:id',
+          component: load('Publisher')
+        },
+        {
+          path: 'view/:id',
+          component: load('View')
+        }
+      ]
+    },
+    { // Not found
+      path: '*',
+      component: load('Error404')
+    }
   ]
 })
