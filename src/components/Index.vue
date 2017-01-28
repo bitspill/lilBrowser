@@ -1,83 +1,37 @@
 <template>
   <q-layout>
     <div slot="header" class="toolbar">
-      <q-toolbar-title :padding="0">
-        Quasar Framework v{{quasarVersion}}
+      <button><span>Logo</span></button>
+      <q-toolbar-title>
+        Alexandria Browser
       </q-toolbar-title>
+      <q-search v-model="searchModel" class="primary titleSearch"></q-search>
+      <button><span>Advanced</span></button>
     </div>
 
-    <router-view class="layout-view"></router-view>
+    <router-view class="layout-view" :searchQuery="searchModel"></router-view>
 
     <div slot="footer" class="toolbar">
-      Footer :)
+      <span>lilBrowser v{{lilBrowserVersion}}, Quarsar v{{quasarVersion}}</span>
     </div>
   </q-layout>
 </template>
 
 <script>
-var moveForce = 30
-var rotateForce = 40
-
-import Quasar, { Utils } from 'quasar'
+import Quasar from 'quasar'
 
 export default {
   data () {
     return {
       quasarVersion: Quasar.version,
-      moveX: 0,
-      moveY: 0,
-      rotateY: 0,
-      rotateX: 0
+      lilBrowserVersion: '0.0.1',
+      searchModel: ''
     }
-  },
-  computed: {
-    position () {
-      let transform = `rotateX(${this.rotateX}deg) rotateY(${this.rotateY}deg)`
-      return {
-        top: this.moveY + 'px',
-        left: this.moveX + 'px',
-        '-webkit-transform': transform,
-        '-ms-transform': transform,
-        transform
-      }
-    }
-  },
-  methods: {
-    move (event) {
-      const {width, height} = Utils.dom.viewport()
-      const {top, left} = Utils.event.position(event)
-      const halfH = height / 2
-      const halfW = width / 2
-
-      this.moveX = (left - halfW) / halfW * -moveForce
-      this.moveY = (top - halfH) / halfH * -moveForce
-      this.rotateY = (left / width * rotateForce * 2) - rotateForce
-      this.rotateX = -((top / height * rotateForce * 2) - rotateForce)
-    }
-  },
-  mounted () {
-    this.$nextTick(() => {
-      document.addEventListener('mousemove', this.move)
-      document.addEventListener('touchmove', this.move)
-    })
-  },
-  beforeDestroy () {
-    document.removeEventListener('mousemove', this.move)
-    document.removeEventListener('touchmove', this.move)
   }
 }
 </script>
 
-<style lang="styl">
-.logo-container
-  width 192px
-  height 268px
-  perspective 800px
-  position absolute
-  top 50%
-  left 50%
-  transform translateX(-50%) translateY(-50%)
-.logo
-  position absolute
-  transform-style preserve-3d
+<style lang="styl" rel="stylesheet/stylus">
+.titleSearch
+  width 35%
 </style>
