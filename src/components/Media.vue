@@ -7,7 +7,7 @@
     <div class="center mediaList list item-delimiter">
       <div class="item" v-for="m in filteredMedia">
         <div class="item-content">
-          Media {{m.txid}}
+          <media-list-item :m="m"></media-list-item>
         </div>
       </div>
     </div>
@@ -16,12 +16,16 @@
 
 <script>
   import axios from 'axios'
+  import MediaListItem from 'components/MediaListItem.vue'
 
   export default {
     data () {
       return {
         mediaItems: []
       }
+    },
+    components: {
+      MediaListItem
     },
     computed: {
       types: function () {
@@ -62,5 +66,5 @@
 
 <style lang="styl" rel="stylesheet/stylus">
   .mediaList
-    width 50%
+    width 80%
 </style>
