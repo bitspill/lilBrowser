@@ -36,9 +36,20 @@
       },
       filteredMedia: function () {
         if (this.searchQuery !== undefined && this.searchQuery !== '') {
-          let vm = this
+          let searchLower = this.searchQuery.toLowerCase()
           return this.mediaItems.filter(function (m) {
-            return m.txid.indexOf(vm.searchQuery) !== -1
+            let title = ''
+            let am
+            if (m['media-data'] !== undefined) {
+              am = m['media-data']['alexandria-media']
+            }
+            if (m['oip-041'] !== undefined) {
+              title = m.title
+            }
+            if (am !== undefined) {
+              title = am.info.title
+            }
+            return title.toLowerCase().indexOf(searchLower) !== -1
           })
         }
         return this.mediaItems
