@@ -3,7 +3,7 @@
     <div slot="header" class="toolbar">
       <button><span>Logo</span></button>
       <q-toolbar-title>
-        Alexandria Browser
+        Unified Index Browser
       </q-toolbar-title>
       <q-search v-model="searchModel" class="primary titleSearch"></q-search>
       <button><span>Advanced</span></button>
