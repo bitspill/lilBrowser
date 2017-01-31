@@ -1,4 +1,4 @@
-# Quasar App
+# lilBrowser
 
 > A Quasar project
 
@@ -17,3 +17,9 @@ $ quasar build
 # lint code
 $ quasar lint
 ```
+
+## License
+
+Copyright (c) 2017 Jeremiah Buddenhagen
+
+[MIT License](LICENSE)
