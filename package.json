@@ -2,7 +2,7 @@
   "name": "lilbrowser",
   "version": "0.0.1",
   "description": "lilBrowser for Alexandria",
-  "author": "Jeremiah Buddenhagen <lilbrowser@github.com>",
+  "author": "Jeremiah Buddenhagen <lilbrowser@bitspill.net>",
   "scripts": {
     "clean": "node build/script.clean.js",
     "dev": "node build/script.dev.js",
