@@ -78,4 +78,5 @@
 <style lang="styl" rel="stylesheet/stylus">
   .mediaList
     width 80%
+    margin auto
 </style>
