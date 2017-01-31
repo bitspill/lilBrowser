@@ -23,7 +23,7 @@
           return this.m['publisher-name']
         }
         if (this.oip !== undefined) {
-          return 'Add Pubname to API'
+          return this.m.publisherName
         }
         return 'wut'
       },
