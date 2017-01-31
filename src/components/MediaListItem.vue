@@ -1,6 +1,7 @@
 <template>
   <div>
     <router-link :to="linkRoute">
+      <div class="float-left on-left"><img src="../assets/video-icon.svg"/></div>
       <span>{{title}}</span><br>
       <span>{{year}} • {{publisher}} • {{runtime}} • {{pubTime}}</span>
     </router-link>
