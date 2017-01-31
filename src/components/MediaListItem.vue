@@ -9,6 +9,8 @@
 </template>
 
 <script>
+  import moment from 'moment'
+
   export default {
     data () {
       return {}
@@ -31,6 +33,17 @@
         return '3:50'
       },
       pubTime () {
+        let am = this.am
+        if (am !== undefined) {
+          let ts = am.timestamp
+          if (ts > 1000000000000) {
+            ts = ts / 1000
+          }
+          return moment.unix(ts).calendar()
+        }
+        if (this.oip !== undefined) {
+          return moment.unix(this.m.timestamp).calendar()
+        }
         return 'yesterday'
       },
       title () {
