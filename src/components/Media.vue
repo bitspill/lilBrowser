@@ -4,7 +4,7 @@
       <br><br><br><br>
     </div>
     <p class="caption">{{types}}</p>
-    <div class="center mediaList list item-delimiter">
+    <div class="center mediaList list">
       <div class="item" v-for="m in filteredMedia">
         <div class="item-content">
           <media-list-item :m="m"></media-list-item>
