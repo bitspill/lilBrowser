@@ -12,7 +12,7 @@
     <router-view class="layout-view" :searchQuery="searchModel"></router-view>
 
     <div slot="footer" class="toolbar">
-      <span>lilBrowser v{{lilBrowserVersion}}, Quarsar v{{quasarVersion}}</span>
+      <span>lilBrowser v{{lilBrowserVersion}}, Quasar v{{quasarVersion}}</span>
     </div>
   </q-layout>
 </template>
