@@ -1,7 +1,7 @@
 <template>
   <q-layout>
     <div slot="header" class="toolbar">
-      <button><span>Logo</span></button>
+      <button v-link="'/'"><span>Logo</span></button>
       <q-toolbar-title>
         Unified Index Browser
       </q-toolbar-title>
