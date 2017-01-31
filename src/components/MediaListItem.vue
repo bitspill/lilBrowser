@@ -18,7 +18,7 @@
     props: ['m'],
     computed: {
       year () {
-        return '2000'
+        return '<unknown>'
       },
       publisher () {
         if (this.am !== undefined) {
@@ -27,10 +27,10 @@
         if (this.oip !== undefined) {
           return this.m.publisherName
         }
-        return 'wut'
+        return '<unknown>'
       },
       runtime () {
-        return '3:50'
+        return '<unknown>'
       },
       pubTime () {
         let am = this.am
@@ -44,7 +44,7 @@
         if (this.oip !== undefined) {
           return moment.unix(this.m.timestamp).calendar()
         }
-        return 'yesterday'
+        return '<unknown>'
       },
       title () {
         let oip = this.oip
@@ -55,7 +55,7 @@
         if (am !== undefined) {
           return am.info.title
         }
-        return 'wut'
+        return '<unknown>'
       },
       txid () {
         return this.m.txid
