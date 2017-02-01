@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-link :to="linkRoute">
+    <router-link :to="viewRoute">
       <div class="float-left on-left type-icon">
         <img v-if="type=='video'" src="../assets/video-icon.svg"/>
         <img v-if="type=='podcast'" src="../assets/podcast-icon.svg"/>
@@ -14,7 +14,7 @@
       <span>{{title}}</span><br>
       <span>
         {{year}}
-        • {{publisher}}
+        • <router-link :to="publisherRoute">{{publisher}}</router-link>
         <span v-if="runtime && (type=='video' || type=='music')">• {{runtime}}</span>
         • {{pubTime}}
       </span>
@@ -110,8 +110,15 @@
       txid () {
         return this.m.txid
       },
-      linkRoute () {
+      viewRoute () {
         return '/view/' + this.m.txid
+      },
+      publisherRoute () {
+        let pubID = this.m.publisher
+        if (this.am) {
+          pubID = this.am.publisher
+        }
+        return '/publisher/' + pubID
       },
       oip () {
         return this.m['oip-041']
