@@ -54,6 +54,10 @@ export default new VueRouter({
           component: load('Publisher')
         },
         {
+          path: 'publisher/:id/:types',
+          component: load('Publisher')
+        },
+        {
           path: 'view/:id',
           component: load('View')
         }
