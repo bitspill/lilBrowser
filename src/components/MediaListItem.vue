@@ -80,6 +80,14 @@
           }
           return mediaRuntime
         }
+        if (this.oip !== undefined) {
+          // ToDo: More intelligently determine duration
+          if (this.oip.artifact.storage &&
+            this.oip.artifact.storage.files &&
+            this.oip.artifact.storage.files[0]) {
+            return this.oip.artifact.storage.files[0].duration
+          }
+        }
         return '<unknown>'
       },
       pubTime () {
