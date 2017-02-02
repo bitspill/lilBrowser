@@ -1,8 +1,11 @@
 <template>
-  <div class="list mediaList">
-    <div class="item" v-for="m in filteredMedia">
-      <div class="item-content">
-        <media-list-item :m="m"></media-list-item>
+  <div>
+
+    <div class="list mediaList">
+      <div class="item" v-for="m in searchFilteredMedia">
+        <div class="item-content">
+          <media-list-item :m="m"></media-list-item>
+        </div>
       </div>
     </div>
   </div>
@@ -13,9 +16,7 @@
 
   export default {
     data () {
-      return {
-
-      }
+      return {}
     },
     components: {
       MediaListItem
@@ -55,10 +56,16 @@
           return tsb - tsa
         })
       },
-      filteredMedia: function () {
+      typeFilteredMedia: function () {
+        let vm = this
+        return this.sortedMedia.filter(function (m) {
+          return vm.types.includes(getType(m))
+        })
+      },
+      searchFilteredMedia: function () {
         if (this.searchQuery) {
           let searchLower = this.searchQuery.toLowerCase()
-          return this.sortedMedia.filter(function (m) {
+          return this.typeFilteredMedia.filter(function (m) {
             let title = ''
             let am
             if (m['media-data'] !== undefined) {
@@ -73,10 +80,10 @@
             return title.toLowerCase().indexOf(searchLower) !== -1
           })
         }
-        return this.sortedMedia
+        return this.typeFilteredMedia
       }
     },
-    props: ['searchQuery', 'mediaItems']
+    props: ['searchQuery', 'mediaItems', 'types']
   }
 
   function deepCopy (o) {
@@ -92,6 +99,21 @@
     }
 
     return copy
+  }
+
+  function getType (m) {
+    let type = ''
+    let am
+    if (m['media-data'] !== undefined) {
+      am = m['media-data']['alexandria-media']
+      if (am !== undefined) {
+        type = am.type
+      }
+    }
+    if (m['oip-041'] !== undefined) {
+      type = m.type
+    }
+    return type
   }
 </script>
 
