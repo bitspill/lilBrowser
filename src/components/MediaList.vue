@@ -21,10 +21,44 @@
       MediaListItem
     },
     computed: {
+      sortedMedia: function () {
+        let dc = deepCopy(this.mediaItems)
+        return dc.sort(function (a, b) {
+          let tsa = 0, tsb = 0
+
+          if (a['media-data'] !== undefined) {
+            let ama = a['media-data']['alexandria-media']
+            if (ama !== undefined) {
+              tsa = ama.timestamp
+            }
+          }
+          if (a['oip-041'] !== undefined) {
+            tsa = a['oip-041'].artifact.timestamp
+          }
+          if (b['media-data'] !== undefined) {
+            let amb = b['media-data']['alexandria-media']
+            if (amb !== undefined) {
+              tsb = amb.timestamp
+            }
+          }
+          if (b['oip-041'] !== undefined) {
+            tsb = b['oip-041'].artifact.timestamp
+          }
+
+          if (tsa >= 10000000000) {
+            tsa = tsa / 1000
+          }
+          if (tsb >= 10000000000) {
+            tsb = tsb / 1000
+          }
+
+          return tsb - tsa
+        })
+      },
       filteredMedia: function () {
         if (this.searchQuery) {
           let searchLower = this.searchQuery.toLowerCase()
-          return this.mediaItems.filter(function (m) {
+          return this.sortedMedia.filter(function (m) {
             let title = ''
             let am
             if (m['media-data'] !== undefined) {
@@ -39,10 +73,25 @@
             return title.toLowerCase().indexOf(searchLower) !== -1
           })
         }
-        return this.mediaItems
+        return this.sortedMedia
       }
     },
     props: ['searchQuery', 'mediaItems']
+  }
+
+  function deepCopy (o) {
+    let copy = o, k
+
+    if (o && typeof o === 'object') {
+      copy = Object.prototype.toString.call(o) === '[object Array]' ? [] : {}
+      for (k in o) {
+        if (o.hasOwnProperty(k)) {
+          copy[k] = deepCopy(o[k])
+        }
+      }
+    }
+
+    return copy
   }
 </script>
 
