@@ -25,6 +25,12 @@
     computed: {
       publisherID: function () {
         return this.$route.params.id
+      },
+      types: function () {
+        if (this.$route.params.types !== undefined) {
+          return this.$route.params.types.split('-')
+        }
+        return ''
       }
     },
     props: ['searchQuery'],
