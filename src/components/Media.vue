@@ -3,7 +3,6 @@
     <div>
       <br><br><br><br>
     </div>
-    <p class="caption">{{types}}</p>
     <media-list :mediaItems="mediaItems" :searchQuery="searchQuery"
                 :types="types"></media-list>
   </div>

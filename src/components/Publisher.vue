@@ -3,7 +3,7 @@
     <div>
       <br><br><br><br>
     </div>
-    <p class="caption">{{publisherID}}<span v-if="types"> - {{types}}</span></p>
+    <p class="caption">{{publisherID}}</p>
     <media-list :mediaItems="mediaItems" :searchQuery="searchQuery"
                 :types="types"></media-list>
   </div>
