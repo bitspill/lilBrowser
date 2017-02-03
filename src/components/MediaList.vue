@@ -38,34 +38,8 @@
       sortedMedia: function () {
         let dc = deepCopy(this.mediaItems)
         return dc.sort(function (a, b) {
-          let tsa = 0, tsb = 0
-
-          if (a['media-data'] !== undefined) {
-            let ama = a['media-data']['alexandria-media']
-            if (ama !== undefined) {
-              tsa = ama.timestamp
-            }
-          }
-          if (a['oip-041'] !== undefined) {
-            tsa = a['oip-041'].artifact.timestamp
-          }
-          if (b['media-data'] !== undefined) {
-            let amb = b['media-data']['alexandria-media']
-            if (amb !== undefined) {
-              tsb = amb.timestamp
-            }
-          }
-          if (b['oip-041'] !== undefined) {
-            tsb = b['oip-041'].artifact.timestamp
-          }
-
-          if (tsa >= 10000000000) {
-            tsa = tsa / 1000
-          }
-          if (tsb >= 10000000000) {
-            tsb = tsb / 1000
-          }
-
+          let tsa = getTimestamp(a)
+          let tsb = getTimestamp(b)
           return tsb - tsa
         })
       },
@@ -134,6 +108,23 @@
       type = m.type
     }
     return type
+  }
+
+  function getTimestamp (m) {
+    let ts = 0
+    if (m['media-data'] !== undefined) {
+      let amb = m['media-data']['alexandria-media']
+      if (amb !== undefined) {
+        ts = amb.timestamp
+      }
+    }
+    if (m['oip-041'] !== undefined) {
+      ts = m['oip-041'].artifact.timestamp
+    }
+    if (ts >= 10000000000) {
+      ts = ts / 1000
+    }
+    return ts
   }
 </script>
 
