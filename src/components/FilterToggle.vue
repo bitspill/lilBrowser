@@ -22,22 +22,26 @@
         return this.activeTypes.includes(this.label.toLowerCase())
       },
       filterRoute () {
+        let prefix = '/media/'
+        if (this.$route.fullPath.startsWith('/publisher/')) {
+          prefix = '/publisher/' + this.$route.params.id + '/'
+        }
         if (this.label.toLowerCase() === 'all') {
-          return '/media/'
+          return prefix
         }
         if (this.isActive) {
           if (this.activeTypes.length > 1) {
             let i = this.activeTypes.indexOf(this.label.toLowerCase())
             let a = deepCopy(this.activeTypes)
             a.splice(i, 1)
-            return '/media/' + a.join('-')
+            return prefix + a.join('-')
           }
-          return '/media/'
+          return prefix
         }
         if (this.activeTypes) {
-          return '/media/' + this.label.toLowerCase() + '-' + this.activeTypes.join('-')
+          return prefix + this.label.toLowerCase() + '-' + this.activeTypes.join('-')
         }
-        return '/media/' + this.label.toLowerCase()
+        return prefix + this.label.toLowerCase()
       }
     },
     props: ['label', 'icon', 'activeTypes']
