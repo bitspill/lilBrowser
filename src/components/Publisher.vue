@@ -24,7 +24,7 @@
     },
     computed: {
       publisherID: function () {
-        return this.$route.params.id
+        return this.$route.params.publisherID
       },
       types: function () {
         if (this.$route.params.types !== undefined) {

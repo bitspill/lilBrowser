@@ -50,15 +50,15 @@ export default new VueRouter({
           component: load('Publisher')
         },
         {
-          path: 'publisher/:id',
+          path: 'publisher/:publisherID',
           component: load('Publisher')
         },
         {
-          path: 'publisher/:id/:types',
+          path: 'publisher/:publisherID/:types',
           component: load('Publisher')
         },
         {
-          path: 'view/:id',
+          path: 'view/:artifactID',
           component: load('View')
         }
       ]

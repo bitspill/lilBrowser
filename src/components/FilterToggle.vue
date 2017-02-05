@@ -24,7 +24,7 @@
       filterRoute () {
         let prefix = '/media/'
         if (this.$route.fullPath.startsWith('/publisher/')) {
-          prefix = '/publisher/' + this.$route.params.id + '/'
+          prefix = '/publisher/' + this.$route.params.publisherID + '/'
         }
         if (this.label.toLowerCase() === 'all') {
           return prefix
