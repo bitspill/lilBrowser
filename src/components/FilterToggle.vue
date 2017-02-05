@@ -8,6 +8,8 @@
 </template>
 
 <script>
+  import deepCopy from 'lilBrowser'
+
   export default {
     data () {
       return {}
@@ -41,20 +43,6 @@
     props: ['label', 'icon', 'activeTypes']
   }
 
-  function deepCopy (o) {
-    let copy = o, k
-
-    if (o && typeof o === 'object') {
-      copy = Object.prototype.toString.call(o) === '[object Array]' ? [] : {}
-      for (k in o) {
-        if (o.hasOwnProperty(k)) {
-          copy[k] = deepCopy(o[k])
-        }
-      }
-    }
-
-    return copy
-  }
 </script>
 
 <style>
