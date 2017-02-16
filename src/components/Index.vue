@@ -6,7 +6,7 @@
         Unified Index Browser
       </q-toolbar-title>
       <q-search v-model="searchModel" class="primary titleSearch"></q-search>
-      <button><span>Advanced</span></button>
+      <!--<button><span>Advanced</span></button>-->
     </div>
 
     <router-view class="layout-view" :searchQuery="searchModel"></router-view>
