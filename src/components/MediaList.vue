@@ -25,7 +25,7 @@
 <script>
   import MediaListItem from 'components/MediaListItem.vue'
   import FilterToggle from 'components/FilterToggle.vue'
-  import {deepCopy, getTimestamp, getTitle, getType} from 'lilBrowser'
+  import lb from 'lilBrowser'
 
   export default {
     data () {
@@ -37,10 +37,10 @@
     },
     computed: {
       sortedMedia: function () {
-        let dc = deepCopy(this.mediaItems)
+        let dc = lb.deepCopy(this.mediaItems)
         return dc.sort(function (a, b) {
-          let tsa = getTimestamp(a)
-          let tsb = getTimestamp(b)
+          let tsa = lb.getTimestamp(a)
+          let tsb = lb.getTimestamp(b)
           return tsb - tsa
         })
       },
@@ -48,7 +48,7 @@
         if (Array.isArray(this.types) && this.types.length > 0) {
           let vm = this
           return this.sortedMedia.filter(function (m) {
-            let t = getType(m)
+            let t = lb.getType(m)
             if (t[t.length] !== 's' && t !== 'music') {
               t = t + 's'
             }
@@ -61,7 +61,7 @@
         if (this.searchQuery) {
           let searchLower = this.searchQuery.toLowerCase()
           return this.typeFilteredMedia.filter(function (m) {
-            let title = getTitle(m)
+            let title = lb.getTitle(m)
             return title.toLowerCase().indexOf(searchLower) !== -1
           })
         }

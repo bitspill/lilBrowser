@@ -1,13 +1,19 @@
 // ToDo: do this right and make an actual module, maybe on npm
 //       document stuff, proper structure, etc.
-export function deepCopy (o) {
+
+let LB = function () {
+}
+
+export default new LB()
+
+LB.prototype.deepCopy = function (o) {
   let copy = o, k
 
   if (o && typeof o === 'object') {
     copy = Object.prototype.toString.call(o) === '[object Array]' ? [] : {}
     for (k in o) {
       if (o.hasOwnProperty(k)) {
-        copy[k] = deepCopy(o[k])
+        copy[k] = this.deepCopy(o[k])
       }
     }
   }
@@ -15,7 +21,7 @@ export function deepCopy (o) {
   return copy
 }
 
-export function getType (m) {
+LB.prototype.getType = function (m) {
   let type = ''
   let am
   if (m['media-data'] !== undefined) {
@@ -30,7 +36,7 @@ export function getType (m) {
   return type
 }
 
-export function getTimestamp (m) {
+LB.prototype.getTimestamp = function (m) {
   let ts = 0
   if (m['media-data'] !== undefined) {
     let amb = m['media-data']['alexandria-media']
@@ -47,7 +53,7 @@ export function getTimestamp (m) {
   return ts
 }
 
-export function getTitle (m) {
+LB.prototype.getTitle = function (m) {
   let title = ''
   let am
   if (m['media-data'] !== undefined) {

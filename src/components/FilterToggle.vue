@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import deepCopy from 'lilBrowser'
+  import lb from 'lilBrowser'
 
   export default {
     data () {
@@ -32,7 +32,7 @@
         if (this.isActive) {
           if (this.activeTypes.length > 1) {
             let i = this.activeTypes.indexOf(this.label.toLowerCase())
-            let a = deepCopy(this.activeTypes)
+            let a = lb.deepCopy(this.activeTypes)
             a.splice(i, 1)
             return prefix + a.join('-')
           }
