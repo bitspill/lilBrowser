@@ -10,6 +10,7 @@
 
 <script>
   import axios from 'axios'
+  import lb from 'lilBrowser'
   import MediaList from 'components/MediaList.vue'
 
   export default {
@@ -31,7 +32,7 @@
       }
     },
     created: function () {
-      const url = 'http://localhost:41289/alexandria/v2/media/get/all'
+      const url = lb.apiBase + '/media/get/all'
       let vm = this
       axios.get(url)
         .then(function (response) {

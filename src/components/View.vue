@@ -45,7 +45,7 @@
     props: [],
     created: function () {
       if (this.txid) {
-        const url = 'http://localhost:41289/alexandria/v2/search'
+        const url = lb.apiBase + '/search'
         let vm = this
         axios.post(url, {
           protocol: 'media',

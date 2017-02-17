@@ -11,6 +11,7 @@
 
 <script>
   import axios from 'axios'
+  import lb from 'lilBrowser'
   import MediaList from 'components/MediaList.vue'
 
   export default {
@@ -36,7 +37,7 @@
     props: ['searchQuery'],
     created: function () {
       if (this.publisherID) {
-        const url = 'http://localhost:41289/alexandria/v2/search'
+        const url = lb.apiBase + '/search'
         let vm = this
         axios.post(url, {
           protocol: 'media',

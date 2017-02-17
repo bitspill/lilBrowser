@@ -3,6 +3,8 @@
 
 let LB = function () {
   this.ipfsBase = 'https://ipfs.alexandria.io/ipfs/'
+  // this.apiBase = 'http://localhost:41289/alexandria/v2'
+  this.apiBase = 'https://api.alexandria.io/alexandria/v2'
 }
 
 export default new LB()
