@@ -2,6 +2,7 @@
 //       document stuff, proper structure, etc.
 
 let LB = function () {
+  this.ipfsBase = 'https://ipfs.alexandria.io/ipfs/'
 }
 
 export default new LB()
@@ -66,4 +67,27 @@ LB.prototype.getTitle = function (m) {
     title = am.info.title
   }
   return title
+}
+
+LB.prototype.getCoverPath = function (m) {
+  let path = ''
+  let am
+  if (m['media-data'] !== undefined) {
+    am = m['media-data']['alexandria-media']
+  }
+  if (m['oip-041'] !== undefined) {
+    let files = m['oip-041'].artifact.storage.files
+    for (let i in files) {
+      let f = files[i]
+      if (f.type === 'coverArt') {
+        path = this.ipfsBase + m['oip-041'].artifact.storage.location + '/' + f.fname
+        break
+      }
+    }
+  }
+  if (am !== undefined) {
+    // ToDo: this doesn't exist on some artifacts, iterate files for coverArt type
+    path = this.ipfsBase + '/' + am.info['extra-info']['DHT Hash'] + '/' + am.info['extra-info'].coverArt
+  }
+  return path
 }
